@@ -1,0 +1,15 @@
+ Write these to an excel worksheet in the following format
+Entry 1		A1	BA2	Entry (12)
+Entry 2		A2	BA4	Entry (12-1)
+Entry #		A#	###	Entry #
+Entry (12)	A(12)	BA(12*2)Entry 1
+Entry 1		B1	BA1	Entry (12)
+Entry 2		B2	BA3	Entry (12-1)
+Entry #		B#	###	Entry #
+Entry (12)	B(12)	BA((12*2)-1)	Entry 1
+Entry 1		C1	BA2	Entry (12)
+Entry 2		C2	BA4	Entry (12-1)
+Entry #		C#	###	Entry #
+Entry (12)	C(12)	BA(12*2)Entry 1
+
+

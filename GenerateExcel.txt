@@ -1,0 +1,187 @@
+
+ 
+package com;
+import java.io.FileOutputStream;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import java.util.Scanner;
+
+public class GenerateData {
+
+	int i,b,row,column;
+    int batch=2;
+
+    private final String dest = Dgeneratexcel.xls;
+    private final HSSFWorkbook myWorkBook = new HSSFWorkbook();
+    private final HSSFSheet mySheet = myWorkBook.createSheet();
+
+    public static void main(String[] args) {
+		 TODO Auto-generated method stub
+        
+		int i;
+		Scanner in = new Scanner(System.in);
+                String[] inputArray = new String[12];    array to hold total 12 alphanumeric entries
+		System.out.println(Enter a valid 12 alphanumeric stringS);
+		
+		Accept 12 alpha numeric entries from keyboard and store into array.
+		for(i=0;i12;i++)
+		{
+			  inputArray[i]=in.next();
+			  
+		}
+        
+	Create object of class GenerateData and pass input array
+		new GenerateData(inputArray);	
+       
+	}
+
+
+    public GenerateData(String[] inputs)
+    {
+    	
+    	int size= inputs.length;
+    	int count=0;
+    	String[][] outputArray = new String[size][4];
+		HSSFRow myRow = null;
+	    HSSFCell myCell = null;
+           
+		for(b=0;b=batch;b++)
+    	{
+
+    		for(row=0;rowsize;row++)
+    		{
+    			count++;
+			    if(b==0)
+                            {    
+                                    myRow = mySheet.createRow(row);
+                            }
+			    else if(b==1)
+                            {  
+				    myRow = mySheet.createRow(row+12);
+                            }
+			    else if(b==2)
+                            {   
+                                     myRow = mySheet.createRow(row+24);
+                            }
+
+
+		    			for(column=0;column=3;column++)
+		    			{
+		    				       myCell = myRow.createCell(column);
+			    				outputArray[row][column] =  generatePattern(b,row,column,count,size,inputs[row],printReverseEntry(inputs,row,size));
+			    				myCell.setCellValue(outputArray[row][column]);
+		    				
+		    					FileOutputStream out = null;
+		    				    try {
+		    				       out = new FileOutputStream(dest);
+		    				        myWorkBook.write(out);
+                                                        out.flush();
+		    				        out.close();
+		    				        } 
+                                                        catch (Exception e) 
+		    				        {
+		    				        e.printStackTrace();
+		    				        }
+                                                        finally 
+                                                        { 
+                                                            try {
+                                                                if (out != null) {
+                                                                        out.close();
+                                                                }
+                                                        } catch (Exception e) {
+                                                                e.printStackTrace();
+                                                        }
+
+                                                        }
+		
+		    					
+		    			}
+    				
+    		}
+   		          count=0;
+
+              
+    		}
+
+    		
+    	}
+	
+    	private Object printReverseEntry(String[] inputs, int row, int s)
+		{
+			 TODO Auto-generated method stub
+			
+			String reverseEntry=inputs[s-(row+1)];
+			return reverseEntry;
+		}
+
+
+	private String generatePattern(int b, int r, int col, int count, int s, String inputstring, Object o) 
+	{
+		
+		 TODO Auto-generated method stub
+		String batchname;
+		if(b==0)
+		{
+			batchname=A;
+			
+		}
+		else if (b==1)
+		{
+			batchname=B;
+			
+		}
+		else
+		{
+			batchname=C;
+
+	    }
+
+		if(col==0)
+		{
+			  String column1=inputstring;
+              return column1 +  ;
+		}
+		if(col==1)
+		{
+			String column2;
+			column2=batchname+count;
+            return column2 +  ;
+		}
+		if(col==2)
+		{
+			if(b!=2)
+				
+			  {
+				String column3;
+				column3=BA+((r+1)2-b);
+				return column3 +  ;
+			  }
+			  else
+			  {
+					String column3;
+					column3=BA+((r+1)2-b+2);
+					return column3 +  ;
+
+			  }
+
+		}
+		if(col==3)
+		{
+			
+			Object oreverse= o;
+			return (String) oreverse +  n;
+			
+		}
+		
+		return Success;
+
+		
+		
+	}			
+
+}
+	
+
